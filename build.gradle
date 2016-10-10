@@ -1,0 +1,50 @@
+buildscript {
+    ext {
+        springVersion = "1.4.1.RELEASE"
+        adminVersion = "1.4.2"
+    }
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springVersion}")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'maven'
+apply plugin: 'spring-boot'
+
+repositories {
+    jcenter()
+    mavenLocal()
+    mavenCentral()
+}
+
+dependencyManagement {
+    imports {
+        // Required to fix incorrect handling of Spring pom by Gradle
+        mavenBom 'org.springframework.cloud:spring-cloud-dependencies:Brixton.SR4'
+    }
+}
+
+dependencies {
+    compile "org.springframework.boot:spring-boot-starter-security:${springVersion}"
+    compile "de.codecentric:spring-boot-admin-server:${adminVersion}"
+    compile "de.codecentric:spring-boot-admin-server-ui:${adminVersion}"
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.2.1'
+}
+
+task stage {
+    dependsOn bootRepackage
+}
+
+bootRun {
+    systemProperties = System.properties
+    jvmArgs = args;
+}

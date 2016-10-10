@@ -1,0 +1,14 @@
+server:
+  port: ${server.port}
+
+security:
+  user:
+    name: manage
+    password: ${manage.pass}
+
+spring:
+  boot:
+    admin:
+      auth:
+        username: manage
+        password: ${manage.pass}
