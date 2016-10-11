@@ -12,3 +12,10 @@ spring:
       auth:
         username: manage
         password: ${manage.pass}
+
+endpoints.health.time-to-live: 10000
+
+zuul:
+  host:
+    socket-timeout-millis: 30000
+    connect-timeout-millis: 10000
