@@ -1,7 +1,7 @@
 buildscript {
     ext {
-        springVersion = "1.4.1.RELEASE"
-        adminVersion = "1.4.2"
+        springVersion = "1.4.2.RELEASE"
+        adminVersion = "1.4.4"
     }
 
     repositories {
@@ -15,7 +15,7 @@ buildscript {
 
 apply plugin: 'java'
 apply plugin: 'maven'
-apply plugin: 'spring-boot'
+apply plugin: 'org.springframework.boot'
 
 repositories {
     jcenter()
@@ -37,7 +37,7 @@ dependencies {
 }
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '2.2.1'
+    gradleVersion = '3.2.1'
 }
 
 task stage {
